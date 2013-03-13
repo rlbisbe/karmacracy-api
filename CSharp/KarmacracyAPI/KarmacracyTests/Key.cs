@@ -9,7 +9,7 @@ namespace KarmacracyTests
     class Key
     {
         /// <summary>
-        /// If you don't have a key, e-mail to support@karmacracy.com
+        /// If you don't have a key, e-mail to api@karmacracy.com
         /// </summary>
         public static string Key = "PUT YOUR OWN KEY HERE";
     }
