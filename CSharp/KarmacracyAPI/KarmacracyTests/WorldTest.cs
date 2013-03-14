@@ -14,7 +14,7 @@ namespace KarmacracyTests
         [Fact]
         public void ShouldLoadAllKcys()
         {
-            Karmacracy cracy = new Karmacracy(Key.Key);
+            Karmacracy cracy = new Karmacracy(Key.Value);
             List<Kcy> kcys = cracy.GetKcys();
             Assert.Equal(10, kcys.Count);
         }
@@ -22,7 +22,7 @@ namespace KarmacracyTests
         [Fact]
         public void ShouldLoadSpecificKcyNumber()
         {
-            Karmacracy cracy = new Karmacracy(Key.Key);
+            Karmacracy cracy = new Karmacracy(Key.Value);
             List<Kcy> kcys = cracy.GetKcys(1, 5, KcyType.Kclicks);
             Assert.Equal(5, kcys.Count);
         }

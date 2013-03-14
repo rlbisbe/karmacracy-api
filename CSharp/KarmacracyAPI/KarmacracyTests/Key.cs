@@ -11,6 +11,6 @@ namespace KarmacracyTests
         /// <summary>
         /// If you don't have a key, e-mail to api@karmacracy.com
         /// </summary>
-        public static string Key = "PUT YOUR OWN KEY HERE";
+        public static string Value = "PUT YOUR OWN KEY HERE";
     }
 }

@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Key.cs" />
+    <Compile Include="NutTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorldTest.cs" />
   </ItemGroup>
