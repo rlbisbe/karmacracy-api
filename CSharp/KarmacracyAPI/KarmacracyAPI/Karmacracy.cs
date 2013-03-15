@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,32 +29,32 @@ namespace KarmacracyAPI
         /// <param name="num">Total number of kcys</param>
         /// <param name="type">Kcy type</param>
         /// <returns></returns>
-        public List<Kcy> GetKcys(int start = 1, int num = 10, KcyType type = KcyType.Kclicks)
+        public async  Task<List<Kcy>> GetKcys(int start = 1, int num = 10, KcyType type = KcyType.Kclicks)
         {
             string url = string.Format("http://karmacracy.com/api/v1/world?appkey={0}&from={1}&num={2}&type={3}",
                 mAppKey, start, num, (int)type);
 
-            RootObject result = GetRootObjectFromUrl(url);
+            RootObject result = await GetRootObjectFromUrl(url);
 
             return result.data.kcy;
         }
 
-        private RootObject GetRootObjectFromUrl(string url)
+        private async Task<RootObject> GetRootObjectFromUrl(string url)
         {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
-            WebClient client = new WebClient();
-            Stream data = client.OpenRead(url);
+            HttpClient client = new HttpClient();
+            Stream data = await client.GetStreamAsync(url);
             var result = (RootObject)serializer.ReadObject(data);
-            data.Close();
+            data.Dispose();
             return result;
         }
 
         private string mAppKey;
 
-        public List<Nut> GetNuts(string username)
+        public async Task<List<Nut>> GetNuts(string username)
         {
             string url = string.Format("http://karmacracy.com/api/v1/awards/{1}?appkey={0}", mAppKey, username);
-            RootObject result = GetRootObjectFromUrl(url);
+            RootObject result = await GetRootObjectFromUrl(url);
             return result.data.nut;
         }
     }
