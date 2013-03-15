@@ -48,7 +48,14 @@ namespace KarmacracyAPI
             return result;
         }
 
-        private string mAppKey; 
+        private string mAppKey;
+
+        public List<Nut> GetNuts(string username)
+        {
+            string url = string.Format("http://karmacracy.com/api/v1/awards/{1}?appkey={0}", mAppKey, username);
+            RootObject result = GetRootObjectFromUrl(url);
+            return result.data.nut;
+        }
     }
 
     public class Person
@@ -73,9 +80,22 @@ namespace KarmacracyAPI
         public List<Person> people { get; set; }
     }
 
+    public class Nut
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string imageSmall { get; set; }
+        public string imageBig { get; set; }
+        public string level { get; set; }
+        public string dateReceivedOrLast { get; set; }
+        public string number { get; set; }
+    }
+
     public class Data
     {
-        public List<Kcy> kcy { get; set; }
+        public List<Kcy> kcy { get; set; }        
+        public int numnuts { get; set; }
+        public List<Nut> nut { get; set; }
     }
 
     public class RootObject
