@@ -11,11 +11,18 @@ namespace KarmacracyTests
     public class NutTest
     {
         [Fact]
-        public void ShouldGetANutListFromAUser()
+        public void ShouldGetANutListFromUser()
         {
             Karmacracy cracy = new Karmacracy(Key.Value);
             List<Nut> nuts = cracy.GetNuts("rlbisbe");
             Assert.NotNull(nuts);
+        }
+
+        [Fact]
+        public void ShouldGetNutDetailsFromUser()
+        {
+            Karmacracy cracy = new Karmacracy(Key.Value);
+            Nut nut = cracy.GetNut("rlbisbe", "19");
         }
     }
 }
